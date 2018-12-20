@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new employee</title>
+</head>
+<body>
+<a href="/">Back to List</a>
+<h1>Create new Employee: </h1>
+<form th:action="@{/create-employee}" enctype="multipart/form-data" th:object="${employee}" method="post">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</td>
+        </tr>
+        <tr>
+            <td>Select a group</td>
+            <td>
+                <select th:field="*{groupEmployee}">
+                    <option th:each="g :${groupEmployees}" th:value="${g.id}" th:text="${g.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+        <td>Hình ảnh</td>
+        <td><input type="file" name="file"  th:field="*{image}"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><input type="radio" th:field="*{gender}" value="male" checked>Male
+            <input type="radio" th:field="*{gender}" value="female">Female
+             <input type="radio" th:field="*{gender}" value="Gay">gay</td>
+        </tr>
+        <tr>
+            <td>Day of Birth</td>
+            <td><input type="date" th:field="*{day_of_birth}"></td>
+            <td th:if="${#fields.hasErrors('day_of_birth')}" th:errors="*{day_of_birth}">day of birth error</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td><input type="text" th:field="*{phone_number}"></td>
+            <td th:if="${#fields.hasErrors('phone_number')}" th:errors="*{phone_number}">phone_number error</td>
+        </tr>
+        <tr>
+            <td>ID card</td>
+            <td><input type="text" th:field="*{idcard}"></td>
+            <td th:if="${#fields.hasErrors('idcard')}" th:errors="*{idcard}">idcard error</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" th:field="*{email}"></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" th:field="*{address}"></td>
+            <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}">address error</td>
+        </tr>
+        <tr>
+            <td><p style="color: blue">*Remember check in gender</p></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Create Employee"></td>
+        </tr>
+    </table>
+</form>
+<th:block th:if="${message}">
+    <p th:text="${message}" style="color: red"></p>
+</th:block>
+</body>
+</html>

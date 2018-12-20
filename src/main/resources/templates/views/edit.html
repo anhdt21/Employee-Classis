@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+</head>
+<body>
+<a href="/">Back to list</a>
+<h1>Update employee</h1>
+<form th:action="@{/edit-employee}" th:object="${employee}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</td>
+        </tr>
+        <tr>
+            <td>Group</td>
+            <td><select th:field="*{groupEmployee}">
+                <option th:each="g :${groupEmployees}" th:value="${g.id}" th:text="${g.name}"></option>
+            </select></td>
+        </tr>
+
+        <tr>
+            <td>Day of birth</td>
+            <td><input type="date" th:field="*{day_of_birth}"></td>
+            <td th:if="${#fields.hasErrors('day_of_birth')}" th:errors="*{day_of_birth}">Day of birth error</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><input type="radio" th:field="*{gender}" value="male">Male
+                <input type="radio" th:field="*{gender}" value="female">Female
+                <input type="radio" th:field="*{gender}" value="gay">Gay</td>
+        </tr>
+        <tr>
+            <td>Phone number</td>
+            <td><input type="text" th:field="*{phone_number}"></td>
+            <td th:if="${#fields.hasErrors('phone_number')}" th:errors="*{phone_number}">Phone error</td>
+        </tr>
+        <tr>
+            <td>Id card</td>
+            <td><input type="text" th:field="*{idcard}"></td>
+            <td th:if="${#fields.hasErrors('idcard')}" th:errors="*{idcard}">idcard error</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" th:field="*{email}"></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" th:field="*{address}"></td>
+            <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}">address error</td>
+
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update"></td>
+        </tr>
+    </table>
+</form>
+<th:block th:if="${message}">
+    <p th:text="${message}" style="color: red"></p>
+</th:block>
+</body>
+</html>
