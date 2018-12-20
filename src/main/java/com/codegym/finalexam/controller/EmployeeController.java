@@ -52,7 +52,7 @@ public class EmployeeController {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("views/create");
         } else {
-            employee.setImage("static/images/"+employee.getImage());
+            employee.setImage(employee.getImage());
             employeeService.save(employee);
         }
         ModelAndView modelAndView = new ModelAndView("views/create", "employee", new Employee());
