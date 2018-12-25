@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 @EnableConfigurationProperties(StorageProperties.class)
 public class FinalExamApplication {
 
+    //cai init de khoi tao thoi, deo biet gi dau :V
     @Bean
     CommandLineRunner init(StorageService storageService) {
         return (args) -> {

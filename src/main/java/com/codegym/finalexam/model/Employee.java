@@ -24,6 +24,7 @@ public class Employee {
 
     private String image;
 
+    //khai bao o day
     @Column(name = "image", nullable = false)
     public String getImage() {
         return image;

@@ -67,7 +67,9 @@ public class EmployeeController {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("views/create");
         } else {
+            // file chua duoc chon thi khong xu ly va chuyen sang luu san pham
             if (!file.isEmpty()) {
+                // lay datetime gan vao ten anh de khong bi trung ten
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
                 employee.setImage(timeStamp+file.getOriginalFilename());
                 storageService.store(file);

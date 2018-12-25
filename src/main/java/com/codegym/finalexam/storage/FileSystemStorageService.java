@@ -22,15 +22,20 @@ import java.util.stream.Stream;
 @Service
 public class FileSystemStorageService implements StorageService {
 
+    // tao hang so duong dan
     private final Path rootLocation;
 
+    // lay duong dan tu properties
     @Autowired
     public FileSystemStorageService(StorageProperties properties) {
         this.rootLocation = Paths.get(properties.getLocation());
     }
 
+    // luu file
     @Override
     public void store(MultipartFile file) {
+
+        // lay ten file vao bien filename
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if (file.isEmpty()) {
@@ -42,6 +47,8 @@ public class FileSystemStorageService implements StorageService {
                         "Cannot store file with relative path outside current directory "
                                 + filename);
             }
+
+            // doan xu lu copy file
             try (InputStream inputStream = file.getInputStream()) {
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
                 Files.copy(inputStream, this.rootLocation.resolve(timeStamp+filename),
